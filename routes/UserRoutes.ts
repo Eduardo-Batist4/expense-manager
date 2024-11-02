@@ -4,6 +4,9 @@ const routes = express.Router();
 // Import Controllers
 import Usercontroller from '../controllers/UserController';
 
-routes.post('/users/register', Usercontroller.createUser);
+// Import Middlewares
+import { validateUser, handleValidateErros } from '../middlewares/ValidateCreateUser'
+
+routes.post('/users/register', validateUser, handleValidateErros, Usercontroller.createUser);
 
 export default routes;
