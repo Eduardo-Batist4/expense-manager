@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon index.ts",
-    "tsc": "ts-node-dev --respawn --transpile-only ./index.ts"
+    "start": "npx nodemon ./src/index.ts",
+    "tsc": "ts-node-dev --respawn --transpile-only ./src/index.ts"
   },
   "keywords": [],
   "author": "",
