@@ -5,6 +5,9 @@ import User from '../models/User';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
+// Import Helpers
+import tokenGenerate from '../helpers/tokenGenerator';
+
 class UserController {
 
     static async createUser(req: Request, res: Response): Promise<void> {
@@ -27,13 +30,13 @@ class UserController {
 
         try {
             const newUser = await user.save();
-            res.status(200).json(newUser);  
+
+            await tokenGenerate(newUser, req, res);
         } catch (error) {
             console.log(error);
             res.status(500).json({ error: 'Internal Serval Error.' });
         };
     };
-
 };
 
 export default UserController;

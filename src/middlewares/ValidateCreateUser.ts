@@ -19,7 +19,7 @@ export const validateUser = [
         }),
 ];
 
-export const handleValidateErros = (req: Request, res: Response, next: NextFunction) => {
+export const handleValidateErros = (req: Request, res: Response, next: NextFunction): void => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
         res.status(400).json({ error: errors.array() });
