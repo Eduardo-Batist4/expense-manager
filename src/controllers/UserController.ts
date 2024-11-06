@@ -6,7 +6,8 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
 // Import Helpers
-import tokenGenerate from '../helpers/tokenGenerator';
+import { createToken } from '../helpers/tokenGenerator';
+import { hashPassword } from '../helpers/bcrypt';
 
 class UserController {
 
@@ -19,19 +20,18 @@ class UserController {
             return;
         };
 
-        const salt: string = await bcrypt.genSalt(12);
-        const passwordHash: string = await bcrypt.hash(password, salt);
+        const hashedPassword = await hashPassword(password);
 
         const user = new User({
             name,
             email,
-            password: passwordHash,
+            password: hashedPassword,
         });
 
         try {
             const newUser = await user.save();
-
-            await tokenGenerate(newUser, req, res);
+            const token = await createToken(newUser)
+            res.status(201).json({ message: 'User created successfully!', token, userId: newUser._id });
         } catch (error) {
             console.log(error);
             res.status(500).json({ error: 'Internal Serval Error.' });
