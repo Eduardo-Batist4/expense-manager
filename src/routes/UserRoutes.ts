@@ -8,5 +8,6 @@ import Usercontroller from '../controllers/UserController';
 import { validateUser, handleValidateErros } from '../middlewares/ValidateCreateUser'
 
 routes.post('/users/register', validateUser, handleValidateErros, Usercontroller.createUser);
+routes.get('/users/:id', Usercontroller.getUserById);
 
 export default routes;

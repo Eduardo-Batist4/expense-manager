@@ -37,6 +37,23 @@ class UserController {
             res.status(500).json({ error: 'Internal Serval Error.' });
         };
     };
+
+    static async getUserById(req: Request, res: Response): Promise<void> {
+        const id: string = req.params.id;
+        const existUser = await User.findById(id);
+        if(!existUser) {
+            res.status(400).json({ error: "The User doesn't exist!" });
+        };
+
+        try {
+            const user = await User.findById(id);
+            res.status(200).json({ user });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Internal Server Error.' });
+        };
+    };
+    
 };
 
 export default UserController;
