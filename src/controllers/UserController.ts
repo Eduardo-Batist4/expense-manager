@@ -54,6 +54,23 @@ class UserController {
         };
     };
     
+    static async deleteUser(req: Request, res: Response): Promise<void> {
+        const id: string = req.params.id;
+
+        const existUser = await User.findById(id);
+        if(!existUser) {
+            res.status(400).json({ error: "The User doesn't exist!" });
+        };
+
+        try {
+            await User.deleteOne({ _id: id });
+            res.status(200).json({ message: 'User successfully deleted!' });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Internal Server Error.' });
+        };
+    };
+
 };
 
 export default UserController;

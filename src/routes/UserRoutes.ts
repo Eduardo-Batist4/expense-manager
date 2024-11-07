@@ -9,5 +9,6 @@ import { validateUser, handleValidateErros } from '../middlewares/ValidateCreate
 
 routes.post('/users/register', validateUser, handleValidateErros, Usercontroller.createUser);
 routes.get('/users/:id', Usercontroller.getUserById);
+routes.delete('/users/:id', Usercontroller.deleteUser);
 
 export default routes;
