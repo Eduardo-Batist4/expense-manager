@@ -8,8 +8,8 @@ import Usercontroller from '../controllers/UserController';
 import { validateUser, handleValidateErros } from '../middlewares/ValidateCreateUser'
 import { verifyToken } from '../middlewares/authMiddleware';
 
-routes.post('/users/register', validateUser, handleValidateErros, Usercontroller.createUser);
-routes.get('/users/:id', Usercontroller.getUserById);
-routes.delete('/users/:id', verifyToken, Usercontroller.deleteUser);
+routes.post('/register', validateUser, handleValidateErros, Usercontroller.createUser);
+routes.get('/:id', Usercontroller.getUserById);
+routes.delete('/:id', verifyToken, Usercontroller.deleteUser);
 
 export default routes;
