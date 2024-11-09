@@ -35,6 +35,15 @@ class TransactionController {
         }
     };
 
+    static async getTransactions (req: Request, res: Response): Promise<void> {
+        try {
+            const tansactions = await Transaction.find();
+            res.status(201).json({ tansactions });            
+        } catch (error) {   
+            res.status(500).json({ error: 'Internal Server Error.' });            
+        }
+    };
+
 }
 
 export default TransactionController;

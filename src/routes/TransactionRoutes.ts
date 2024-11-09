@@ -7,6 +7,7 @@ import TransactionController from '../controllers/TransactionController';
 // Import Middleware
 import { validateTransaction, handleValidateErros } from '../middlewares/ValidateCreateTransaction';
 
-routes.post('/', validateTransaction, handleValidateErros, TransactionController.createTransaction);
+routes.post('/register', validateTransaction, handleValidateErros, TransactionController.createTransaction);
+routes.get('/', TransactionController.getTransactions);
 
 export default routes;
