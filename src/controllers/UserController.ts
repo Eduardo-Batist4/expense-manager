@@ -42,7 +42,7 @@ class UserController {
         const id: string = req.params.id;
         const existUser = await User.findById(id);
         if(!existUser) {
-            res.status(400).json({ error: "The User doesn't exist!" });
+            res.status(404).json({ error: "The User doesn't exist!" });
         };
 
         try {
