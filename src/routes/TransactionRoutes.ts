@@ -11,5 +11,6 @@ import { verifyToken } from '../middlewares/authMiddleware';
 routes.post('/register', validateTransaction, handleValidateErros, TransactionController.createTransaction);
 routes.get('/', TransactionController.getTransactions);
 routes.patch('/:id', TransactionController.updateTransaction);
+routes.delete('/:id', TransactionController.deleteTransaction);
 
 export default routes;

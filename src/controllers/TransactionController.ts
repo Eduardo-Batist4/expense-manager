@@ -79,6 +79,24 @@ class TransactionController {
         };
     };
 
+    static async deleteTransaction(req: Request, res: Response): Promise<void> {
+        const id = req.params.id;
+
+        const transaction = await Transaction.findById(id);
+        if(!transaction) {
+            res.status(404).json({ error: "The Transaction doesn't exist!" });
+        };
+
+        try {
+            await Transaction.findByIdAndDelete(id);
+            res.status(200).json({ message: 'Transaction successfully deleted!' });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Internal Server Error.' });
+        };
+
+    };
+
 };
 
 export default TransactionController;
