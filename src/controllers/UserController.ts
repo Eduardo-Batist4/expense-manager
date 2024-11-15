@@ -1,10 +1,6 @@
 import { Request, Response } from 'express';
 import User from '../models/User';
 
-// Import Dependencies
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-
 // Import Helpers
 import { createToken } from '../helpers/tokenGenerator';
 import { hashPassword } from '../helpers/bcrypt';
